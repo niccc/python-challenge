@@ -17,16 +17,17 @@ with open(election_data_csv, 'r') as csvfile:
 
     #make dictionary to add unique candidate name to, and tally votes
     candidate_dict = {}
-
+#check if dictionary already has candidate and add if not
     for row in csvreader:
-        if row[2] in candidate_dict: #might need to change to candidate_dict.keys
+        if row[2] in candidate_dict: 
             candidate_dict[row[2]] += 1
         else:
             candidate_dict[row[2]] = 1
 
-
+#print everything
 total_votes = sum(candidate_dict.values())
 winner = max(candidate_dict, key = candidate_dict.get)
+
 print("Election Results")
 print("-------------------------")
 print(f"Total Votes: {total_votes}")
