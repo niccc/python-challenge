@@ -23,4 +23,17 @@ with open(election_data_csv, 'r') as csvfile:
             candidate_dict[row[2]] += 1
         else:
             candidate_dict[row[2]] = 1
-print(candidate_dict)
+
+
+total_votes = sum(candidate_dict.values())
+winner = max(candidate_dict, key = candidate_dict.get)
+print("Election Results")
+print("-------------------------")
+print(f"Total Votes: {total_votes}")
+print("-------------------------")
+for candidate in candidate_dict:
+    vote_percent = 100*(candidate_dict[candidate]/total_votes)
+    print(f"{candidate}: {vote_percent}% ({candidate_dict[candidate]})")
+print("-------------------------")
+print(f"Winner: {winner}")
+print("-------------------------")
