@@ -23,6 +23,8 @@ with open(election_data_csv, 'r') as csvfile:
             candidate_dict[row[2]] += 1
         else:
             candidate_dict[row[2]] = 1
+            
+
 
 #print everything
 total_votes = sum(candidate_dict.values())
@@ -38,3 +40,18 @@ for candidate in candidate_dict:
 print("-------------------------")
 print(f"Winner: {winner}")
 print("-------------------------")
+
+#output file path
+output_path = os.path.join('.', 'output_file.txt')
+#open output file to write
+with open(output_path, 'w') as output_file:
+    print("Election Results", file = output_file)
+    print("-------------------------", file = output_file)
+    print(f"Total Votes: {total_votes}", file = output_file)
+    print("-------------------------", file = output_file)
+    for candidate in candidate_dict:
+        vote_percent = 100*(candidate_dict[candidate]/total_votes)
+        print(f"{candidate}: {vote_percent}% ({candidate_dict[candidate]})", file = output_file)
+    print("-------------------------", file = output_file)
+    print(f"Winner: {winner}", file = output_file)
+    print("-------------------------", file = output_file)
